@@ -1,3 +1,19 @@
+/*
+   Copyright 2026 Aly Smith "alydevs" https://aly.pet
+
+   Licensed under the Apache License, Version 2.0 (the "License");
+   you may not use this file except in compliance with the License.
+   You may obtain a copy of the License at
+
+       http://www.apache.org/licenses/LICENSE-2.0
+
+   Unless required by applicable law or agreed to in writing, software
+   distributed under the License is distributed on an "AS IS" BASIS,
+   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   See the License for the specific language governing permissions and
+   limitations under the License.
+*/
+
 package main
 
 import (
@@ -57,7 +73,7 @@ func fetchWithRetry(method, rawURL string, clientHeaders http.Header) (*http.Res
 		// Drain and close the 401 body before retrying.
 		io.Copy(io.Discard, resp.Body)
 		resp.Body.Close()
-		log.Printf("⏳ 401 received, retrying in %s", delay)
+		log.Printf("401 received, retrying in %s", delay)
 		time.Sleep(delay)
 		delay *= 2
 	}
@@ -106,7 +122,7 @@ func fetchFollowingRedirects(method, rawURL string, clientHeaders http.Header) (
 				return nil, err
 			}
 			rawURL = base.ResolveReference(loc).String()
-			log.Printf("↪ redirect → %s", rawURL)
+			//log.Printf("↪ redirect → %s", rawURL)
 
 		default:
 			if resp.StatusCode < 200 || resp.StatusCode >= 300 {
