@@ -16,7 +16,7 @@ Compose
 ```yaml
 services:
   archivarr:
-    image: ghcr.io/alydevs/archivarr
+    image: ghcr.io/alydevs/archivarr:latest
     environment:
       - IA_ACCESS=your_access_key
       - IA_SECRET=your_secret_key
